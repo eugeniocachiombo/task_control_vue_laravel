@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
-
 const favicon = "../../public/favicon.ico";
 </script>
 
@@ -14,23 +12,27 @@ const favicon = "../../public/favicon.ico";
                             <div class="brand-logo">
                                 <!--<img v-bind:src="favicon" alt="logo"  style="min-width: 1%">-->
                             </div>
-                            <h4>Autenticação</h4>
+                            <h4>Criação de Conta</h4>
                             <h6 class="fw-light">Informe seus dados</h6>
                             <form class="pt-3">
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg text-white" id="exampleInputEmail1"
-                                        placeholder="Username">
+                                    <input type="text" class="form-control form-control-lg text-white" id="name"
+                                        placeholder="Nome Completo">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-lg text-white" id="email"
+                                        placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-lg text-white"
-                                        id="exampleInputPassword1" placeholder="Password">
+                                        id="Password" placeholder="Senha">
                                 </div>
                                 <div class="mt-3">
                                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="#">Entrar</a>
+                                        href="#">Criar Conta</a>
                                 </div>
                                 <div class="text-center mt-4 fw-light">
-                                    Não possui uma conta? <a href="#" v-on:click="$router.push({name: 'signup'})" class="text-white">Criar</a>
+                                    já tem uma conta? <a href="#" v-on:click="$router.push({name: 'login'})" class="text-white">Entrar</a>
                                 </div>
                             </form>
                         </div>
