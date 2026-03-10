@@ -1,12 +1,22 @@
-<script setup lang="ts"></script>
+<style scoped></style>
+<script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+
+const route = useRouter();
+
+function goto(){
+  route.push('/home');
+}
+
+</script>
 
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <router-view />
+
+  <button type="button" @click="goto">
+    Clicar
+  </button>
 </template>
 
-<style scoped></style>
