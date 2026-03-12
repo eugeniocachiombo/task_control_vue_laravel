@@ -18,7 +18,7 @@ class UserController extends Controller
         return UserResource::collection($data);
     }
 
-    public function create(StoreUserRequest $request)
+    public function store(StoreUserRequest $request)
     {
         $data = user::create($request->validated());
         if (!$data) {
