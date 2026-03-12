@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api\v1;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\api\v1\StoreUserRequest;
 use App\Http\Requests\api\v1\UpdateUserRequest;
