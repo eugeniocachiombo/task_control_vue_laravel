@@ -11,9 +11,10 @@ use App\Http\Resources\api\v1\UserResource;
 class UserController extends Controller
 {
     
-    public function index(string $itens)
+    public function index()
     {
-        $data = User::paginate($itens ?? 5);
+        $items = request('items', 10);
+        $data = User::paginate($items);
         return UserResource::collection($data);
     }
 
