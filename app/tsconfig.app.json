@@ -10,6 +10,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@plugin/*": ["./plugin/*"],
+      "@run_alert/*": ["./public/run_alert/*"],
     },
 
     // `vue-tsc --build` produces a .tsbuildinfo file for incremental type-checking.

@@ -13,7 +13,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@plugin': fileURLToPath(new URL('./plugin/', import.meta.url))
+      '@plugin': fileURLToPath(new URL('./plugin/', import.meta.url)),
+      '@run_alert': fileURLToPath(new URL('./public/run_alert', import.meta.url))
     },
   },
 })

@@ -1,4 +1,4 @@
-let sweetalert = (data) => {
+let sweetalert = (data:any) => {
     Swal.fire({
         icon: data.icon,
         title: data.title,
@@ -9,7 +9,7 @@ let sweetalert = (data) => {
         cancelButtonText: data.btnTextCancel ?? "Cancelar",
         cancelButtonColor: '#d33',
         timer: data.timer ?? null
-    }).then((result) => {
+    }).then((result:any) => {
         if (result.isConfirmed) {
            // Livewire.dispatch(data.methodConfirm)
         }
