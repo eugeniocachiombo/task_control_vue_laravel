@@ -1,20 +1,51 @@
 <script setup lang="ts">
 import axios from '@plugin/axios';
 import { ref } from 'vue';
+import sweetalert from '../../public/run_alert/run_sweetalert'
 
-let spinner = ref(false);
+let name: string = '';
+let email: string = '';
+let password: string = '';
+let validations: any = ref({});
+let spinner: any = ref(false);
+
 
 async function save() {
     spinner.value = true;
     try {
         // await axios.get('/sanctum/csrf-cookie');
-        const response = await axios.get("/users");
-        console.log(response.data);
-    } catch (error) {
+        const response = await axios.post("/users", {
+            'name': name,
+            'email': email,
+            'password': password
+        });
+
+        console.log(response.data && response.status == 201);
+
+        if (response.data && response.status == 201) {
+            sweetalert({
+                'icon': 'success',
+                'title': 'Sucesso',
+                'html': 'Conta Criada com Sucesso',
+                'btn': true
+            });
+            clear();
+        }
+
+
+    } catch (error: any) {
+        validations.value = error.response.data.errors;
         console.error(error);
     } finally {
         spinner.value = false;
     }
+}
+
+function clear() {
+    name = '';
+    email = '';
+    password = '';
+    validations.value={};
 }
 </script>
 
@@ -32,16 +63,20 @@ async function save() {
                             <h6 class="fw-light">Informe seus dados</h6>
                             <form class="pt-3">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg text-white" id="name"
-                                        placeholder="Nome Completo">
+                                    <input type="text" v-model="name" class="form-control form-control-lg text-white"
+                                        id="name" placeholder="Nome Completo">
+                                    <p v-if="validations.name" class="text-danger">{{ validations.name.join("") }}</p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg text-white" id="email"
-                                        placeholder="Email">
+                                    <input type="email" v-model="email" class="form-control form-control-lg text-white"
+                                        id="email" placeholder="Email">
+                                    <p v-if="validations.email" class="text-danger">{{ validations.email.join("") }}</p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg text-white" id="Password"
+                                    <input type="password" v-model="password"
+                                        class="form-control form-control-lg text-white" id="Password"
                                         placeholder="Senha">
+                                    <p v-if="validations.password" class="text-danger">{{ validations.password.join("") }}</p>
                                 </div>
                                 <div class="mt-3">
                                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
