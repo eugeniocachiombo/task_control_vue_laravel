@@ -2,8 +2,8 @@
 import { useRoute } from 'vue-router';
 import axios from '@plugin/axios';
 import { ref } from 'vue';
-import sweetalert from '@run_alert/run_sweetalert'
-
+import sweetalert from '@run_alert/run_sweetalert';
+import UserLogged from '../../services/userlogged'
 
 let email: string = '';
 let password: string = '';
@@ -23,15 +23,15 @@ async function auth() {
         });
 
         if (response.data && response.status == 200) {
-            localStorage.setItem('userLogged', response.data.id);
-            console.log("logado")
+            console.log(UserLogged());
             clear();
         }
     } catch (error: any) {
+        
         console.log(error);
-        //console.error(error);
         validations.value = error.response.data.errors ?? '';
         let notFound = error.response.data.length;
+
         if (notFound == 0) {
             sweetalert({
                 'icon': 'error',
