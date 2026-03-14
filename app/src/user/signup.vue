@@ -12,8 +12,8 @@ let spinner: any = ref(false);
 async function save() {
     spinner.value = true;
     try {
-        // await axios.get('/sanctum/csrf-cookie');
-        const response = await axios.post("/users", {
+        
+        const response = await axios.post("/api/v1/users", {
             'name': name,
             'email': email,
             'password': password

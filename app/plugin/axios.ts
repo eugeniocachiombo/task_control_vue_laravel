@@ -1,7 +1,7 @@
 import axiosInstace from 'axios';
 
 const axios:any = axiosInstace.create({
-    baseURL: 'http://localhost:8000/api/v1',
+    baseURL: 'http://localhost:8000',
     withCredentials: true,
     withXSRFToken: true,
     headers: {

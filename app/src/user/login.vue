@@ -11,25 +11,27 @@ let validations: any = ref({});
 let spinner: any = ref(false);
 
 async function auth() {
+
     spinner.value = true;
     validations.value = {};
 
     try {
-        // await axios.get('/sanctum/csrf-cookie');
-        const response = await axios.post("/login", {
-            'email': email,
-            'password': password
+        await axios.get('/sanctum/csrf-cookie');
+        const response = await axios.post("/api/v1/login", {
+             email,
+             password
         });
 
         if (response.data && response.status == 200) {
             localStorage.setItem('userLogged', response.data.id);
+            console.log("logado")
             clear();
         }
     } catch (error: any) {
+        console.log(error);
+        //console.error(error);
         validations.value = error.response.data.errors ?? '';
         let notFound = error.response.data.length;
-        console.error(error);
-
         if (notFound == 0) {
             sweetalert({
                 'icon': 'error',
