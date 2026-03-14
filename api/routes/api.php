@@ -10,5 +10,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
+Route::post("/v1/login", [UserController::class, 'login']);
 Route::apiResource("/v1/users", UserController::class);
 Route::apiResource("/v1/tasks", TaskController::class)->middleware('auth:sanctum');

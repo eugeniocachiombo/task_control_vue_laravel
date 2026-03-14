@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\api\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\api\v1\LoginRequest;
 use App\Models\User;
 use App\Http\Requests\api\v1\StoreUserRequest;
 use App\Http\Requests\api\v1\UpdateUserRequest;
 use App\Http\Resources\api\v1\UserResource;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    
+
     public function index()
     {
         $items = request('items', 10);
@@ -54,5 +57,15 @@ class UserController extends Controller
         }
         $data->delete();
         return response()->json($data, 204);
+    }
+
+    public function login(LoginRequest $request)
+    {
+        $credencials = $request->validated();
+        if (Auth::attempt($credencials)) {
+            $request->session()->regenerate();
+            return response()->json(Auth::user(), 200);
+        }
+        return response()->json([], 404);
     }
 }

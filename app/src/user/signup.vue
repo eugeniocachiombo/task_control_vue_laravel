@@ -9,7 +9,6 @@ let password: string = '';
 let validations: any = ref({});
 let spinner: any = ref(false);
 
-
 async function save() {
     spinner.value = true;
     try {
@@ -20,8 +19,6 @@ async function save() {
             'password': password
         });
 
-        console.log(response.data && response.status == 201);
-
         if (response.data && response.status == 201) {
             sweetalert({
                 'icon': 'success',
@@ -31,8 +28,6 @@ async function save() {
             });
             clear();
         }
-
-
     } catch (error: any) {
         validations.value = error.response.data.errors;
         console.error(error);
