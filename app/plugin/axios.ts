@@ -1,6 +1,6 @@
-import axiosInstance from 'axios';
+import axiosInstace from 'axios';
 
-const axios = axiosInstance.create({
+const axios:any = axiosInstace.create({
     baseURL: 'http://localhost:8000/api/v1',
     withCredentials: true,
     withXSRFToken: true,

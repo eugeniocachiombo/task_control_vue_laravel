@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const favicon = "../../public/favicon.ico"
+import axios from '@plugin/axios'
 
 async function callget() {
     try {
