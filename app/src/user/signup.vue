@@ -1,13 +1,19 @@
 <script setup lang="ts">
-import axios from '@plugin/axios'
+import axios from '@plugin/axios';
+import { ref } from 'vue';
 
-async function callget() {
+let spinner = ref(false);
+
+async function save() {
+    spinner.value = true;
     try {
-       // await axios.get('/sanctum/csrf-cookie');
+        // await axios.get('/sanctum/csrf-cookie');
         const response = await axios.get("/users");
         console.log(response.data);
     } catch (error) {
         console.error(error);
+    } finally {
+        spinner.value = false;
     }
 }
 </script>
@@ -39,10 +45,13 @@ async function callget() {
                                 </div>
                                 <div class="mt-3">
                                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        v-on:click="callget()" href="#">Criar Conta</a>
+                                        v-on:click="save()" href="#">
+                                        <i v-if="spinner" class="spinner-border spinner-border-sm me-2"></i>
+                                        <span>Criar Conta</span>
+                                    </a>
                                 </div>
                                 <div class="text-center mt-4 fw-light">
-                                    já tem uma conta? <a href="#" v-on:click="$router.push({ name: 'login' })"
+                                    Já tem uma conta? <a href="#" v-on:click="$router.push({ name: 'login' })"
                                         class="text-white">Entrar</a>
                                 </div>
                             </form>
