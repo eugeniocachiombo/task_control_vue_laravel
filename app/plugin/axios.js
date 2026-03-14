@@ -1,0 +1,13 @@
+import axiosInstance from 'axios';
+
+const axios = axiosInstance.create({
+    baseURL: 'http://localhost:8000/api/v1',
+    withCredentials: true,
+    withXSRFToken: true,
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+});
+
+export default axios;

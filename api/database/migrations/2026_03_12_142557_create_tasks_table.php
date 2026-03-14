@@ -19,8 +19,8 @@ return new class extends Migration
             $table->enum('status_aprov', ['Pendente', 'Aprovado', 'Recusado'])->default('Pendente');
             $table->unsignedBigInteger('boss_id')->nullable();
             $table->unsignedBigInteger('func_id');
-            $table->foreign('func_id')->references('users')->on('id')->onDelete('cascade');
-            $table->foreign('boss_id')->references('users')->on('id')->onDelete('cascade');
+            $table->foreign('func_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('boss_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

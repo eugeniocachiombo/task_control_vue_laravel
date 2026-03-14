@@ -1,15 +1,26 @@
 <script setup lang="ts">
-const favicon = "../../public/favicon.ico"
+const favicon = "../../public/favicon.ico";
+import axios from 'axios';
 
-async function callget() {
+const axiosInstance = axios.create({
+    baseURL: 'http://localhost:8000/api/v1',
+    withCredentials: true,
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+});
+
+async function get() {
     try {
-       // await axios.get('/sanctum/csrf-cookie');
-        const response = await axios.get("/users");
+        const response = await axiosInstance.get("/users");
         console.log(response.data);
     } catch (error) {
         console.error(error);
     }
 }
+
+get();
 </script>
 
 <template>
@@ -39,7 +50,7 @@ async function callget() {
                                 </div>
                                 <div class="mt-3">
                                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        v-on:click="callget()" href="#">Criar Conta</a>
+                                        @click="get()" href="#">Criar Conta</a>
                                 </div>
                                 <div class="text-center mt-4 fw-light">
                                     já tem uma conta? <a href="#" v-on:click="$router.push({ name: 'login' })"
