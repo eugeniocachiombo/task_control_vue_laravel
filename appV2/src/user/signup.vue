@@ -16,29 +16,11 @@ async function save() {
 
     try {
 
-      /*  fetch("https://genioproapi.infinityfreeapp.com/api/v1/users")
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error("Erro:", error);
-  });
-  
-       
         const response = await axios.post("/api/v1/users", {
             'name': name,
             'email': email,
             'password': password
-        }); */
-
-        const dt = await fetch("https://genioproapi.infinityfreeapp.com/api/v1/users");
-  const data = await dt.json();
- console.log(dt);
-
-        console.log("axios______-----");
-        const response = await axios.get("/api/v1/users");
-        console.log(response);
+        });
 
         if (response.data && response.status == 201) {
             sweetalert({
