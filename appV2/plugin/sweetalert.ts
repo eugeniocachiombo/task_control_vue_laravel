@@ -1,3 +1,6 @@
+import Swal from 'sweetalert2';
+
+
 let sweetalert = (data:any) => {
     Swal.fire({
         icon: data.icon,
