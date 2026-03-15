@@ -10,9 +10,12 @@ let validations: any = ref({});
 let spinner: any = ref(false);
 
 async function save() {
+
     spinner.value = true;
+    validations.value = {};
+
     try {
-        
+        await axios.get('/sanctum/csrf-cookie');
         const response = await axios.post("/api/v1/users", {
             'name': name,
             'email': email,
@@ -29,8 +32,17 @@ async function save() {
             clear();
         }
     } catch (error: any) {
-        validations.value = error.response.data.errors;
-        console.error(error);
+        validations.value = error.response.data.errors ?? {};
+        console.log(error);
+
+        if (!validations.value) {
+            sweetalert({
+                'icon': 'error',
+                'title': 'Erro!...',
+                'html': 'Falha de operação',
+                'btn': true
+            });
+        }
     } finally {
         spinner.value = false;
     }
@@ -40,7 +52,7 @@ function clear() {
     name = '';
     email = '';
     password = '';
-    validations.value={};
+    validations.value = {};
 }
 </script>
 
@@ -71,7 +83,8 @@ function clear() {
                                     <input type="password" v-model="password"
                                         class="form-control form-control-lg text-white" id="Password"
                                         placeholder="Senha">
-                                    <p v-if="validations.password" class="text-danger">{{ validations.password.join("") }}</p>
+                                    <p v-if="validations.password" class="text-danger">{{ validations.password.join("")
+                                        }}</p>
                                 </div>
                                 <div class="mt-3">
                                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"

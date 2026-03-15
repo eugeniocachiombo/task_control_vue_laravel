@@ -3,7 +3,6 @@ import { useRoute } from 'vue-router';
 import axios from '@plugin/axios';
 import { ref } from 'vue';
 import sweetalert from '@run_alert/run_sweetalert';
-import UserLogged from '../../services/userlogged'
 
 let email: string = '';
 let password: string = '';
@@ -18,18 +17,15 @@ async function auth() {
     try {
         await axios.get('/sanctum/csrf-cookie');
         const response = await axios.post("/api/v1/login", {
-             email,
-             password
+            email,
+            password
         });
-
-        if (response.data && response.status == 200) {
-            console.log(UserLogged());
-            clear();
-        }
+        sessionStorage.setItem('id',response.data.id);
+        sessionStorage.setItem('nome',response.data.id);
+        sessionStorage.setItem('email',response.data.id);
     } catch (error: any) {
-        
-        console.log(error);
-        validations.value = error.response.data.errors ?? '';
+
+        validations.value = error.response.data.errors ?? {};
         let notFound = error.response.data.length;
 
         if (notFound == 0) {
@@ -39,16 +35,23 @@ async function auth() {
                 'html': 'Verifique o seu email e a senha',
                 'btn': true
             });
+        } 
+        
+        if(!validations.value) {
+            sweetalert({
+                'icon': 'error',
+                'title': 'Erro!...',
+                'html': 'Falha de operação',
+                'btn': true
+            });
         }
     } finally {
         spinner.value = false;
     }
 }
 
-function clear() {
-    email = '';
-    password = '';
-    validations.value = {};
+function clear(...value:any) {
+    value=null;
 }
 </script>
 
@@ -73,7 +76,8 @@ function clear() {
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-lg text-white"
                                         v-model="password" id="password" placeholder="Senha">
-                                    <p v-if="validations.password" class="text-danger">{{ validations.password.join("")}}</p>
+                                    <p v-if="validations.password" class="text-danger">{{
+                                        validations.password.join("")}}</p>
                                 </div>
                                 <div class="mt-3">
                                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"

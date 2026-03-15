@@ -10,6 +10,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@plugin/*": ["./plugin/*"],
+      "@services/*": ["./services/*"],
       "@run_alert/*": ["./public/run_alert/*"],
     },
 
