@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 import axios from '@plugin/axios';
 import { ref } from 'vue';
 import sweetalert from '@run_alert/run_sweetalert';
@@ -8,6 +8,7 @@ let email: string = '';
 let password: string = '';
 let validations: any = ref({});
 let spinner: any = ref(false);
+let router = useRouter();
 
 async function auth() {
 
@@ -16,13 +17,11 @@ async function auth() {
 
     try {
         await axios.get('/sanctum/csrf-cookie');
-        const response = await axios.post("/api/v1/login", {
-            email,
-            password
-        });
+        const response = await axios.post("/api/v1/login", {email,password});
         sessionStorage.setItem('id',response.data.id);
-        sessionStorage.setItem('nome',response.data.id);
-        sessionStorage.setItem('email',response.data.id);
+        sessionStorage.setItem('name',response.data.name);
+        sessionStorage.setItem('email',response.data.email);
+        router.push({name:'dash'});
     } catch (error: any) {
 
         validations.value = error.response.data.errors ?? {};
@@ -48,10 +47,6 @@ async function auth() {
     } finally {
         spinner.value = false;
     }
-}
-
-function clear(...value:any) {
-    value=null;
 }
 </script>
 
