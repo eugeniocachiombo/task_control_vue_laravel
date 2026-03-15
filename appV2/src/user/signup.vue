@@ -15,12 +15,6 @@ async function save() {
     validations.value = {};
 
     try {
-const urlComProxy = "https://corsproxy.io" + encodeURIComponent("https://api.exemplo.com");
-
-fetch(urlComProxy)
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error("Erro:", error));
         
         const response = await axios.post("/api/v1/users", {
             'name': name,
