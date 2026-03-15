@@ -1,5 +1,5 @@
 <script setup lang="ts">
-let userName: string = sessionStorage.getItem('name');
+let userName: string | null = sessionStorage.getItem('name');
 </script>
 
 <template>
