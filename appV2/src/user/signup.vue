@@ -16,7 +16,7 @@ async function save() {
 
     try {
 
-        fetch("https://genioproapi.infinityfreeapp.com/api/v1/users")
+      /*  fetch("https://genioproapi.infinityfreeapp.com/api/v1/users")
   .then(response => response.json())
   .then(data => {
     console.log(data);
@@ -24,12 +24,16 @@ async function save() {
   .catch(error => {
     console.error("Erro:", error);
   });
+  
        
         const response = await axios.post("/api/v1/users", {
             'name': name,
             'email': email,
             'password': password
-        });
+        }); */
+
+        const response = await axios.get("/api/v1/users");
+        console.log(response);
 
         if (response.data && response.status == 201) {
             sweetalert({
