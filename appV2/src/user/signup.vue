@@ -32,6 +32,11 @@ async function save() {
             'password': password
         }); */
 
+        const dt = await fetch("https://genioproapi.infinityfreeapp.com/api/v1/users");
+  const data = await dt.json();
+ console.log(dt);
+
+        console.log("axios______-----");
         const response = await axios.get("/api/v1/users");
         console.log(response);
 
