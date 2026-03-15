@@ -12,6 +12,7 @@
       "@plugin/*": ["./plugin/*"],
       "@services/*": ["./services/*"],
       "@run_alert/*": ["./public/run_alert/*"],
+      "@images/*": ["./public/images/*"],
     },
 
     // `vue-tsc --build` produces a .tsbuildinfo file for incremental type-checking.
