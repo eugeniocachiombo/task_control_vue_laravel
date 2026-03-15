@@ -22,7 +22,7 @@ async function save() {
             });
 
     try {
-        await axios.get('/sanctum/csrf-cookie');
+       
         const response = await axios.post("/api/v1/users", {
             'name': name,
             'email': email,
