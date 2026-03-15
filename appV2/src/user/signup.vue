@@ -16,7 +16,7 @@ async function save() {
 
     try {
 
-        fetch("genioproapi.infinityfreeapp.com/api/v1/users/api/v1/users")
+        fetch("https://genioproapi.infinityfreeapp.com/api/v1/users")
   .then(response => response.json())
   .then(data => {
     console.log(data);
