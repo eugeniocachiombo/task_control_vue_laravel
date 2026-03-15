@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router';
 import axios from '@plugin/axios';
 import { ref } from 'vue';
-import sweetalert from '@run_alert/run_sweetalert';
+import sweetalert from '@plugin/sweetalert';
 
 let email: string = '';
 let password: string = '';

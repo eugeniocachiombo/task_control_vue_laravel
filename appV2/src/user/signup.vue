@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import axios from '@plugin/axios';
 import { ref } from 'vue';
-import sweetalert from '@run_alert/run_sweetalert'
+import sweetalert from '@plugin/sweetalert'
 
 let name: string = '';
 let email: string = '';
