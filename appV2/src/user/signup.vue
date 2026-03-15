@@ -14,13 +14,6 @@ async function save() {
     spinner.value = true;
     validations.value = {};
 
-    sweetalert({
-                'icon': 'success',
-                'title': 'Sucesso',
-                'html': 'Conta Criada com Sucesso',
-                'btn': true
-            });
-
     try {
        
         const response = await axios.post("/api/v1/users", {
