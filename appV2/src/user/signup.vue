@@ -15,6 +15,15 @@ async function save() {
     validations.value = {};
 
     try {
+
+        fetch("genioproapi.infinityfreeapp.com/api/v1/users/api/v1/users")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => {
+    console.error("Erro:", error);
+  });
        
         const response = await axios.post("/api/v1/users", {
             'name': name,
