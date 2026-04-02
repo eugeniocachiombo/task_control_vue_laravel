@@ -13,6 +13,7 @@ dist
 dist-ssr
 coverage
 *.local
+plugin/axios.*
 
 # Editor directories and files
 .vscode/*
@@ -37,3 +38,5 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+
+

@@ -18,14 +18,17 @@ async function auth() {
     try {
         await axios.get('/sanctum/csrf-cookie');
         const response = await axios.post("/api/v1/login", {email,password});
-        sessionStorage.setItem('id',response.data.id);
-        sessionStorage.setItem('name',response.data.name);
-        sessionStorage.setItem('email',response.data.email);
-        router.push({name:'dash'});
+         console.log(response);
+        if(response?.data){
+            sessionStorage.setItem('id',response?.data?.id);
+            sessionStorage.setItem('name',response?.data?.name);
+            sessionStorage.setItem('email',response?.data?.email);
+            router.push({name:'dash'});
+        }
     } catch (error: any) {
 
-        validations.value = error.response.data.errors ?? {};
-        let notFound = error.response.data.length;
+        validations.value = error?.response?.data?.errors ?? {};
+        let notFound = error?.response?.data?.length;
 
         if (notFound == 0) {
             sweetalert({

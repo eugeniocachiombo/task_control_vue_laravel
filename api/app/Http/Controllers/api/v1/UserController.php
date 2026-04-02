@@ -63,7 +63,6 @@ class UserController extends Controller
     {
         $credencials = $request->validated();
         if (Auth::attempt($credencials)) {
-            $request->session()->regenerate();
             return response()->json(Auth::user(), 200);
         }
         return response()->json([], 404);

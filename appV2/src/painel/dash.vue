@@ -15,10 +15,10 @@ let userName: string | null = sessionStorage.getItem('name');
                 </div>
                 <div>
                     <a class="navbar-brand brand-logo" href="@index.html">
-                        <img src="@images/logo.svg" alt="logo" />
+                        <img src="@/assets/images/logo.svg" alt="logo" />
                     </a>
                     <a class="navbar-brand brand-logo-mini" href="@index.html">
-                        <img src="@images/logo-mini.svg" alt="logo" />
+                        <img src="@/assets/images/logo-mini.svg" alt="logo" />
                     </a>
                 </div>
             </div>
@@ -138,7 +138,7 @@ let userName: string | null = sessionStorage.getItem('name');
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="@images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
+                                    <img src="@/assets/images/faces/face10.jpg" alt="image" class="img-sm profile-pic">
                                 </div>
                                 <div class="preview-item-content flex-grow py-2">
                                     <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
@@ -147,7 +147,7 @@ let userName: string | null = sessionStorage.getItem('name');
                             </a>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="@images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
+                                    <img src="@/assets/images/faces/face12.jpg" alt="image" class="img-sm profile-pic">
                                 </div>
                                 <div class="preview-item-content flex-grow py-2">
                                     <p class="preview-subject ellipsis font-weight-medium text-dark">David Grey </p>
@@ -156,7 +156,7 @@ let userName: string | null = sessionStorage.getItem('name');
                             </a>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="@images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
+                                    <img src="@/assets/images/faces/face1.jpg" alt="image" class="img-sm profile-pic">
                                 </div>
                                 <div class="preview-item-content flex-grow py-2">
                                     <p class="preview-subject ellipsis font-weight-medium text-dark">Travis Jenkins </p>
@@ -167,11 +167,11 @@ let userName: string | null = sessionStorage.getItem('name');
                     </li>
                     <li class="nav-item dropdown d-none d-lg-block user-dropdown">
                         <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="img-xs rounded-circle" src="@images/faces/face8.jpg" alt="Profile image">
+                            <img class="img-xs rounded-circle" src="@/assets/images/faces/face8.jpg" alt="Profile image">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                             <div class="dropdown-header text-center">
-                                <img class="img-md rounded-circle" src="@images/faces/face8.jpg" alt="Profile image">
+                                <img class="img-md rounded-circle" src="@/assets/images/faces/face8.jpg" alt="Profile image">
                                 <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
                                 <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
                             </div>
@@ -324,7 +324,7 @@ let userName: string | null = sessionStorage.getItem('name');
                         </div>
                         <ul class="chat-list">
                             <li class="list active">
-                                <div class="profile"><img src="@images/faces/face1.jpg" alt="image"><span
+                                <div class="profile"><img src="@/assets/images/faces/face1.jpg" alt="image"><span
                                         class="online"></span></div>
                                 <div class="info">
                                     <p>Thomas Douglas</p>
@@ -333,7 +333,7 @@ let userName: string | null = sessionStorage.getItem('name');
                                 <small class="text-muted my-auto">19 min</small>
                             </li>
                             <li class="list">
-                                <div class="profile"><img src="@images/faces/face2.jpg" alt="image"><span
+                                <div class="profile"><img src="@/assets/images/faces/face2.jpg" alt="image"><span
                                         class="offline"></span></div>
                                 <div class="info">
                                     <div class="wrapper d-flex">
@@ -345,7 +345,7 @@ let userName: string | null = sessionStorage.getItem('name');
                                 <small class="text-muted my-auto">23 min</small>
                             </li>
                             <li class="list">
-                                <div class="profile"><img src="@images/faces/face3.jpg" alt="image"><span
+                                <div class="profile"><img src="@/assets/images/faces/face3.jpg" alt="image"><span
                                         class="online"></span></div>
                                 <div class="info">
                                     <p>Daniel Russell</p>
@@ -354,7 +354,7 @@ let userName: string | null = sessionStorage.getItem('name');
                                 <small class="text-muted my-auto">14 min</small>
                             </li>
                             <li class="list">
-                                <div class="profile"><img src="@images/faces/face4.jpg" alt="image"><span
+                                <div class="profile"><img src="@/assets/images/faces/face4.jpg" alt="image"><span
                                         class="offline"></span></div>
                                 <div class="info">
                                     <p>James Richardson</p>
@@ -363,7 +363,7 @@ let userName: string | null = sessionStorage.getItem('name');
                                 <small class="text-muted my-auto">2 min</small>
                             </li>
                             <li class="list">
-                                <div class="profile"><img src="@images/faces/face5.jpg" alt="image"><span
+                                <div class="profile"><img src="@/assets/images/faces/face5.jpg" alt="image"><span
                                         class="online"></span></div>
                                 <div class="info">
                                     <p>Madeline Kennedy</p>
@@ -372,7 +372,7 @@ let userName: string | null = sessionStorage.getItem('name');
                                 <small class="text-muted my-auto">5 min</small>
                             </li>
                             <li class="list">
-                                <div class="profile"><img src="@images/faces/face6.jpg" alt="image"><span
+                                <div class="profile"><img src="@/assets/images/faces/face6.jpg" alt="image"><span
                                         class="online"></span></div>
                                 <div class="info">
                                     <p>Sarah Graves</p>

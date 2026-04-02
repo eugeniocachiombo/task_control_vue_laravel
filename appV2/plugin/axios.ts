@@ -1,7 +1,7 @@
 import axiosInstace from 'axios';
 
 const axios:any = axiosInstace.create({
-    baseURL: 'https://genioproapi.infinityfreeapp.com',
+    baseURL: 'http://127.0.0.1:8000',
     withCredentials: true,
     withXSRFToken: true,
     headers: {
