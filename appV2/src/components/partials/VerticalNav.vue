@@ -2,13 +2,15 @@
 
 
 const items = [
+
+    // Dashboard
     {
         categoryName: null,
         menu: [
             {
-                menuTitle: "Dashboard",
+                menuTitle: "Painel",
                 strIcon: "mdi mdi-grid-large menu-icon ",
-                link: "#",
+                link: "/dashboard",
                 collapse: '',
                 subMenu: null
             },
