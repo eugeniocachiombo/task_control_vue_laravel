@@ -3,14 +3,13 @@ import { useRouter } from 'vue-router';
 import axios from '@plugin/axios';
 import { ref } from 'vue';
 import sweetalert from '@plugin/sweetalert';
-import UserService from '@service/userService';
+import userService from '@service/userService';
 
 let email: string = '';
 let password: string = '';
 let validations: any = ref({});
 let spinner: any = ref(false);
 let router = useRouter();
-let userLogged = new UserService();
 
 async function auth() {
 
@@ -22,7 +21,7 @@ async function auth() {
         const response = await axios.post("/api/v1/login", {email,password});
          console.log(response);
         if(response?.data){
-            userLogged.setLogged(response?.data);
+            userService.setLogged(response?.data);
             router.push({name:'dashboard'});
         }
     } catch (error: any) {
