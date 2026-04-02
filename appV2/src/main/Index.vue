@@ -9,16 +9,16 @@ import RightSidebar from '@/components/partials/RightSidebar.vue';
 <template>
     <div class="container-scroller">
         <HorizontalNav />
-        <div class="container-fluid page-body-wrapper">
+        <div class="container-fluid page-body-wrapper" >
             <SkinSidebar />
             <RightSidebar />
             <VerticalNav />
 
             <div class="main-panel">
                 <router-view />
+                <Footer />
             </div>
         </div>
-        <Footer />
     </div>
 </template>
 

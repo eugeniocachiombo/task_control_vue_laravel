@@ -1,15 +1,15 @@
 <script setup lang="ts"></script>
 
 <template>
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
+    <nav class="sidebar sidebar-offcanvas text-white" id="sidebar" >
+        <ul class="nav ">
             <li class="nav-item">
                 <a class="nav-link" href="@index.html">
-                    <i class="mdi mdi-grid-large menu-icon"></i>
+                    <i class="mdi mdi-grid-large menu-icon "></i>
                     <span class="menu-title">Dashboard</span>
                 </a>
             </li>
-            <li class="nav-item nav-category">UI Elements</li>
+            <li class="nav-item nav-category"><span class="nav-category-name">UI Elements</span></li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
                     aria-controls="ui-basic">
@@ -28,7 +28,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item nav-category">Forms and Datas</li>
+            <li class="nav-item nav-category"><span class="nav-category-name">Forms and Datas</span></li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
                     aria-controls="form-elements">
@@ -84,7 +84,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item nav-category">pages</li>
+            <li class="nav-item nav-category"><span class="nav-category-name">pages</span></li>
             <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                     <i class="menu-icon mdi mdi-account-circle-outline"></i>
@@ -98,8 +98,8 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item nav-category">help</li>
-            <li class="nav-item">
+            <li class="nav-item nav-category"><span class="nav-category-name">help</span></li>
+            <li class="nav-item" >
                 <a class="nav-link" href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
                     <i class="menu-icon mdi mdi-file-document"></i>
                     <span class="menu-title">Documentation</span>
@@ -109,4 +109,21 @@
     </nav>
 </template>
 
-<script scoped></script>
+<style scoped>
+.nav-item, .nav{
+ background: #222;
+ color: white;
+}
+.sub-menu{
+    background-color: aliceblue;
+}
+#sidebar{
+    background-color: #222;
+}
+
+.nav .nav-item .nav-link, .nav-category-name, .nav-category-icon  {
+    color: white;
+}
+
+
+</style>
