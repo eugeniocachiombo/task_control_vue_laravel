@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
+  { path: '/:pathMatch(.*)*', component: import('@/error/Index.vue') },
   { path: "/", component: import('@/login/Index.vue') },
   { path: "/login", name: 'login', component: import('@/login/Index.vue') },
   { path: "/criar-conta", name: 'signup', component: import('@/signup/Index.vue') },
