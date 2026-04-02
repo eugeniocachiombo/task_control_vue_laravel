@@ -1,129 +1,129 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+
+const items = [
+    {
+        categoryName: null,
+        menu: [
+            {
+                menuTitle: "Dashboard",
+                strIcon: "mdi mdi-grid-large menu-icon ",
+                link: "#",
+                collapse: '',
+                subMenu: null
+            },
+        ]
+    },
+
+    // UI Elements
+    {
+        categoryName: "UI Elements",
+        menu: [
+            {
+                menuTitle: "UI Elements",
+                strIcon: "menu-icon mdi mdi-floor-plan",
+                link: "#",
+                collapse: "UI_Elements",
+                subMenu: [
+                    { title: "Buttons", link: "@pages/ui-features/buttons.html" },
+                    { title: "Dropdowns", link: "@pages/ui-features/dropdowns.html" },
+                    { title: "Typography", link: "@pages/ui-features/typography.html" },
+                ]
+            },
+            {
+                menuTitle: "Kits e Ferramentas",
+                strIcon: "menu-icon mdi mdi-car",
+                link: "#",
+                collapse: "Kits_e_Ferramentas",
+                subMenu: [
+                    { title: "Buttons", link: "@pages/ui-features/buttons.html" },
+                    { title: "Dropdowns", link: "@pages/ui-features/dropdowns.html" },
+                    { title: "Typography", link: "@pages/ui-features/typography.html" },
+                ]
+            },
+        ]
+    },
+
+    // Help
+    {
+        categoryName: "help",
+        menu: [
+            {
+                menuTitle: "Documentation",
+                strIcon: "menu-icon mdi mdi-file-document",
+                link: "http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html",
+                collapse: "Documentation",
+                subMenu: [
+                    { title: "Buttons", link: "@pages/ui-features/buttons.html" },
+                    { title: "Dropdowns", link: "@pages/ui-features/dropdowns.html" },
+                    { title: "Typography", link: "@pages/ui-features/typography.html" },
+                ]
+            },
+        ]
+    },
+
+    // Utilizador
+    {
+        categoryName: "Utilizador",
+        menu: [
+            {
+                menuTitle: "Utilizador",
+                strIcon: "menu-icon mdi mdi-account-circle-outline",
+                link: "http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html",
+                collapse: "Utilizador",
+                subMenu: [
+                    { title: "Perfil", link: "@pages/ui-features/buttons.html" },
+                    { title: "Documentos", link: "@pages/ui-features/dropdowns.html" },
+                    { title: "Saldo", link: "@pages/ui-features/typography.html" },
+                ]
+            },
+        ]
+    },
+];
+</script>
 
 <template>
-    <nav class="sidebar sidebar-offcanvas text-white" id="sidebar" >
+    <nav class="sidebar sidebar-offcanvas text-white" id="sidebar">
         <ul class="nav ">
-            <li class="nav-item">
-                <a class="nav-link" href="@index.html">
-                    <i class="mdi mdi-grid-large menu-icon "></i>
-                    <span class="menu-title">Dashboard</span>
-                </a>
-            </li>
-            <li class="nav-item nav-category"><span class="nav-category-name">UI Elements</span></li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                    aria-controls="ui-basic">
-                    <i class="menu-icon mdi mdi-floor-plan"></i>
-                    <span class="menu-title">UI Elements</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="ui-basic">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="@pages/ui-features/buttons.html">Buttons</a>
-                        </li>
-                        <li class="nav-item"> <a class="nav-link" href="@pages/ui-features/dropdowns.html">Dropdowns</a>
-                        </li>
-                        <li class="nav-item"> <a class="nav-link"
-                                href="@pages/ui-features/typography.html">Typography</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item nav-category"><span class="nav-category-name">Forms and Datas</span></li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
-                    aria-controls="form-elements">
-                    <i class="menu-icon mdi mdi-card-text-outline"></i>
-                    <span class="menu-title">Form elements</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="form-elements">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"><a class="nav-link" href="@pages/forms/basic_elements.html">Basic
-                                Elements</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false"
-                    aria-controls="charts">
-                    <i class="menu-icon mdi mdi-chart-line"></i>
-                    <span class="menu-title">Charts</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="charts">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="@pages/charts/chartjs.html">ChartJs</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false"
-                    aria-controls="tables">
-                    <i class="menu-icon mdi mdi-table"></i>
-                    <span class="menu-title">Tables</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="tables">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="@pages/tables/basic-table.html">Basic
-                                table</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-                    <i class="menu-icon mdi mdi-layers-outline"></i>
-                    <span class="menu-title">Icons</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="icons">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="@pages/icons/mdi.html">Mdi
-                                icons</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item nav-category"><span class="nav-category-name">pages</span></li>
-            <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                    <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                    <span class="menu-title">User Pages</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="auth">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="@pages/samples/login.html"> Login
-                            </a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="nav-item nav-category"><span class="nav-category-name">help</span></li>
-            <li class="nav-item" >
-                <a class="nav-link" href="http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html">
-                    <i class="menu-icon mdi mdi-file-document"></i>
-                    <span class="menu-title">Documentation</span>
-                </a>
-            </li>
+            <span v-for="item in items">
+            <li v-if="item.categoryName" class="nav-item nav-category"><span class="nav-category-name">{{ item.categoryName }}</span></li>
+                <li v-for="menu in item.menu" class="nav-item">
+                    <a class="nav-link" :href="'#' + menu.collapse" data-bs-toggle="collapse" aria-expanded="false"
+                        :aria-controls="menu.collapse">
+                        <i :class="menu.strIcon"></i>
+                        <span class="menu-title"><span class="nav-category-name">{{ menu.menuTitle }}</span></span>
+                        <i v-if="menu.subMenu" class="menu-arrow"></i>
+                    </a>
+                    <div v-if="menu.subMenu" class="collapse" :id="menu.collapse">
+                        <ul v-for="sub in menu.subMenu" class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" :href="sub.link">{{ sub.title }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </span>
         </ul>
     </nav>
 </template>
 
 <style scoped>
-.nav-item, .nav{
- background: #222;
- color: white;
-}
-.sub-menu{
-    background-color: aliceblue;
-}
-#sidebar{
-    background-color: #222;
-}
-
-.nav .nav-item .nav-link, .nav-category-name, .nav-category-icon  {
+.nav-item,
+.nav {
+    background: #222;
     color: white;
 }
 
+.sub-menu {
+    background-color: aliceblue;
+}
 
+#sidebar {
+    background-color: #222;
+}
+
+.nav .nav-item .nav-link,
+.nav-category-name,
+.nav-category-icon {
+    color: white;
+}
 </style>
