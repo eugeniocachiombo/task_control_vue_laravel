@@ -23,7 +23,7 @@ async function auth() {
             sessionStorage.setItem('id',response?.data?.id);
             sessionStorage.setItem('name',response?.data?.name);
             sessionStorage.setItem('email',response?.data?.email);
-            router.push({name:'dash'});
+            router.push({name:'dashboard'});
         }
     } catch (error: any) {
 

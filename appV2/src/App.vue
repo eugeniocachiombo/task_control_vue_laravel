@@ -1,10 +1,7 @@
-<style scoped></style>
-<script setup lang="ts">
-import { useRouter } from 'vue-router';
-</script>
-
+<script setup lang="ts"></script>
 
 <template>
   <router-view />
 </template>
 
+<style scoped></style>
