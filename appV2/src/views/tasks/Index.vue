@@ -8,6 +8,7 @@ import Toast from "primevue/toast";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
 import InputNumber from "primevue/inputnumber";
+import { FilterMatchMode } from '@primevue/core/api'
 import Dropdown from "primevue/dropdown";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
@@ -28,6 +29,10 @@ let userLogged: any = userService.getLogged();
 
 //==============Manipulação============///
 let taskList: any = ref({});
+const selectedTasks = ref()
+const filters = ref({
+  global: { value: null, matchMode: FilterMatchMode.CONTAINS }
+})
 
 
 onMounted(async () => {
@@ -111,11 +116,25 @@ onMounted(async () => {
 
     <div class="row">
       <DataTable
-      :value="taskList.all"
-      paginator
-      :rows="5"
-      :rowsPerPageOptions="[5, 10, 20]"
-      responsiveLayout="scroll">
+        ref="dt"
+        v-model:selection="selectedTasks"
+        :value="taskList.all"
+        dataKey="id"
+        :paginator="true"
+        :rows="10"
+        :filters="filters"
+        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+        :rowsPerPageOptions="[5, 10, 25]"
+        currentPageReportTemplate="Mostrando {first} de {last} of {totalRecords} Tarefas"
+      >
+        <template #header>
+          <div class="flex flex-wrap gap-2 items-center justify-between">
+            <h4 class="my-3">Listar Tarefas</h4>
+            <IconField>
+              <InputText v-model="filters['global'].value" placeholder="Pesquisar..." />
+            </IconField>
+          </div>
+        </template>
 
       <Column field="id" header="ID" sortable />
       <Column field="title" header="Título" sortable />
