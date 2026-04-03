@@ -4,9 +4,10 @@ import taskStore from "@/store/taskStore";
 
 //==============Titulação============///
 const titlePage = {
-  title: 'Painel',
-  path: 'painel > index'
+  title: 'Tarefas',
+  path: 'tarefas > index'
 };
+
 
 //==============Manipulação============///
 let taskList: any = ref({});
@@ -26,7 +27,7 @@ onMounted(async () => {
     <div class="row">
       <h3>{{titlePage.title}}</h3> <small>{{titlePage.path}}</small> <hr>
     </div>
-
+    
     <div class="row">
       <div class="col-lg-4 grid-margin stretch-card">
         <div class="card">

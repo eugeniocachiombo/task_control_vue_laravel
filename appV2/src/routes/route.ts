@@ -10,6 +10,7 @@ const routes = [
     component: () => import('@/views/main/Index.vue'),
     children: [
       { path: "/painel", name: 'dashboard', component: () => import('@/views/dashboard/Index.vue') },
+      { path: "/tarefas", name: 'tasks', component: () => import('@/views/tasks/Index.vue') },
     ]
   }
 ];
