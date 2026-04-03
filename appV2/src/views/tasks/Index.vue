@@ -20,9 +20,9 @@ let taskList: any = ref({});
 onMounted(async () => {
   let allTasks = await taskStore.getTask();
   taskList.value = {
-    pending: await allTasks.filter((e) => e.status_aprov == "Pendente" && e.boss_id == userLogged.id)?.length,
-    accepted: await allTasks.filter((e) => e.status_aprov == "Aprovado" && e.boss_id == userLogged.id)?.length,
-    recused: await allTasks.filter((e) => e.status_aprov == "Recusado" && e.boss_id ==  userLogged.id)?.length,
+    pending: await allTasks.filter((e:any) => e.status_aprov == "Pendente" && e.boss_id == userLogged.id)?.length,
+    accepted: await allTasks.filter((e:any) => e.status_aprov == "Aprovado" && e.boss_id == userLogged.id)?.length,
+    recused: await allTasks.filter((e:any) => e.status_aprov == "Recusado" && e.boss_id ==  userLogged.id)?.length,
   };
 });
 </script>
