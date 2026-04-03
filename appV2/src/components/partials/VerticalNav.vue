@@ -17,30 +17,28 @@ const items = [
         ]
     },
 
-    // UI Elements
+    // Actividades
     {
-        categoryName: "UI Elements",
+        categoryName: "Actividades",
         menu: [
             {
-                menuTitle: "UI Elements",
+                menuTitle: "Gestão de Tarefas",
                 strIcon: "menu-icon mdi mdi-floor-plan",
                 link: "#",
-                collapse: "UI_Elements",
+                collapse: "Tarefas",
                 subMenu: [
-                    { title: "Buttons", link: "@pages/ui-features/buttons.html" },
-                    { title: "Dropdowns", link: "@pages/ui-features/dropdowns.html" },
-                    { title: "Typography", link: "@pages/ui-features/typography.html" },
+                    { title: "Tarefas", link: "#" },
                 ]
             },
             {
-                menuTitle: "Kits e Ferramentas",
+                menuTitle: "Classificação",
                 strIcon: "menu-icon mdi mdi-car",
                 link: "#",
-                collapse: "Kits_e_Ferramentas",
+                collapse: "pontuacao",
                 subMenu: [
-                    { title: "Buttons", link: "@pages/ui-features/buttons.html" },
-                    { title: "Dropdowns", link: "@pages/ui-features/dropdowns.html" },
-                    { title: "Typography", link: "@pages/ui-features/typography.html" },
+                    { title: "Excelentes", link: "#" },
+                    { title: "Médios", link: "#" },
+                    { title: "Baixos", link: "#" },
                 ]
             },
         ]
@@ -48,17 +46,16 @@ const items = [
 
     // Help
     {
-        categoryName: "help",
+        categoryName: "Ajuda",
         menu: [
             {
-                menuTitle: "Documentation",
+                menuTitle: "Ajuda e Suporte",
                 strIcon: "menu-icon mdi mdi-file-document",
-                link: "http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html",
+                link: "#",
                 collapse: "Documentation",
                 subMenu: [
-                    { title: "Buttons", link: "@pages/ui-features/buttons.html" },
-                    { title: "Dropdowns", link: "@pages/ui-features/dropdowns.html" },
-                    { title: "Typography", link: "@pages/ui-features/typography.html" },
+                    { title: "Reportar Erro", link: "#" },
+                    { title: "Suporte Técnico", link: "#" },
                 ]
             },
         ]
@@ -74,7 +71,7 @@ const items = [
                 link: "http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html",
                 collapse: "Utilizador",
                 subMenu: [
-                    { title: "Perfil", link: "@pages/ui-features/buttons.html" },
+                    { title: "Perfil", link: "#" },
                     { title: "Documentos", link: "@pages/ui-features/dropdowns.html" },
                     { title: "Saldo", link: "@pages/ui-features/typography.html" },
                 ]
@@ -87,8 +84,11 @@ const items = [
 <template>
     <nav class="sidebar sidebar-offcanvas text-white" id="sidebar">
         <ul class="nav ">
-            <span v-for="item in items">
-            <li v-if="item.categoryName" class="nav-item nav-category"><span class="nav-category-name">{{ item.categoryName }}</span></li>
+            <div v-for="item in items">
+                <li v-if="item.categoryName" class="nav-item nav-category">
+                    <span class="nav-category-name">{{ item.categoryName }}
+                        </span>
+                </li>
                 <li v-for="menu in item.menu" class="nav-item ">
                     <a class="nav-link" :href="'#' + menu.collapse" data-bs-toggle="collapse" aria-expanded="false"
                         :aria-controls="menu.collapse">
@@ -97,9 +97,7 @@ const items = [
                         <i v-if="menu.subMenu" class="menu-arrow"></i>
                     </a>
                     <div v-if="menu.subMenu" class="collapse" :id="menu.collapse">
-                        <ul v-for="sub in menu.subMenu" 
-                        class="nav flex-column sub-menu" 
-                        style="background-color: #222;">
+                        <ul v-for="sub in menu.subMenu" class="nav flex-column sub-menu"  style="background-color: #222;">
                             <li class="nav-item" > 
                                 <a class="nav-link text-white sub-menu-title"
                                  style="text-decoration: none;" :href="sub.link">{{ sub.title }}</a>
@@ -107,7 +105,7 @@ const items = [
                         </ul>
                     </div>
                 </li>
-            </span>
+            </div>
         </ul>
     </nav>
 </template>
