@@ -15,7 +15,7 @@ async function save() {
     validations.value = {};
 
     try {
-       
+        
         const response = await axios.post("/api/v1/users", {
             'name': name,
             'email': email,
