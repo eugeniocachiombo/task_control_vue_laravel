@@ -5,7 +5,7 @@ import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
 
 createApp(App)
-.use(PrimeVue);
-.use(ToastService);
+.use(PrimeVue)
+.use(ToastService)
 .use(router)
 .mount('#app')

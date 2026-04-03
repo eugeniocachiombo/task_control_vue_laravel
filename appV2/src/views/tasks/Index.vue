@@ -3,6 +3,19 @@ import { onMounted, ref } from "vue";
 import taskStore from "@/store/taskStore";
 import userService from '@/service/userService';
 
+// PrimeVue
+import Toast from "primevue/toast";
+import Button from "primevue/button";
+import InputText from "primevue/inputtext";
+import InputNumber from "primevue/inputnumber";
+import Dropdown from "primevue/dropdown";
+import DataTable from "primevue/datatable";
+import Column from "primevue/column";
+// Toast service
+import { useToast } from "primevue/usetoast";
+
+const toast = useToast();
+
 //==============Titulação============///
 const titlePage = {
   title: 'Tarefas',
@@ -20,10 +33,12 @@ let taskList: any = ref({});
 onMounted(async () => {
   let allTasks = await taskStore.getTask();
   taskList.value = {
-    pending: await allTasks.filter((e:any) => e.status_aprov == "Pendente" && e.boss_id == userLogged.id)?.length,
-    accepted: await allTasks.filter((e:any) => e.status_aprov == "Aprovado" && e.boss_id == userLogged.id)?.length,
-    recused: await allTasks.filter((e:any) => e.status_aprov == "Recusado" && e.boss_id ==  userLogged.id)?.length,
+    all: await allTasks,
+    pending: await allTasks.filter((e:any) => e.status_aprov == "Pendente")?.length,
+    accepted: await allTasks.filter((e:any) => e.status_aprov == "Aprovado")?.length,
+    recused: await allTasks.filter((e:any) => e.status_aprov == "Recusado")?.length,
   };
+  console.log(allTasks.value.all)
 });
 </script>
 
@@ -95,7 +110,29 @@ onMounted(async () => {
     </div> 
 
     <div class="row">
-      <h1>Tabela</h1>
+      <DataTable
+      :value="taskList.all"
+      paginator
+      :rows="5"
+      :rowsPerPageOptions="[5, 10, 20]"
+      responsiveLayout="scroll">
+
+      <Column field="id" header="ID" sortable />
+      <Column field="title" header="Título" sortable />
+      <Column field="desc" header="Descrição" sortable />
+      <Column field="status_exec" header="Estado de Execução" sortable />
+      <Column field="status_aprov" header="Estado de Aprovação" sortable />
+      <Column field="func_id" header="Responsável" sortable >
+        <template #body="slotProps">
+          {{slotProps?.data?.func?.name}}
+        </template>
+      </Column>
+      <Column field="boss_id" header="Chefe" sortable >
+        <template #body="slotProps">
+          {{slotProps?.data?.boss?.name}}
+        </template>
+      </Column>
+    </DataTable>
     </div>
   </div>
 </template>

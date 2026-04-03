@@ -13,7 +13,7 @@ class TaskController extends Controller
 
     public function index()
     {
-        return Task::all();
+        return Task::with(['boss', 'func'])->get();
     }
 
     public function store(StoreTaskRequest $request)
