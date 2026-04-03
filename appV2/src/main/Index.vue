@@ -10,7 +10,7 @@ import RightSidebar from '@/components/partials/RightSidebar.vue';
     <div class="container-scroller">
         <HorizontalNav />
         <div class="container-fluid page-body-wrapper" >
-            <SkinSidebar />
+            <!--<SkinSidebar />-->
             <RightSidebar />
             <VerticalNav />
 
