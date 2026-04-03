@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import userService from '@service/userService';
+import userService from '@/service/userService';
 let userLogged: any = userService.getLogged();
 </script>
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import axios from '@plugin/axios';
+import axios from '@/plugin/axios';
 import { ref } from 'vue';
-import sweetalert from '@plugin/sweetalert';
-import userService from '@service/userService';
+import sweetalert from '@/plugin/sweetalert';
+import userService from '@/service/userService';
 
 let email: string = '';
 let password: string = '';
