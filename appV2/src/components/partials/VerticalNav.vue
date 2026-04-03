@@ -10,9 +10,11 @@ const items = [
             {
                 menuTitle: "Painel",
                 strIcon: "mdi mdi-grid-large menu-icon ",
-                link: "/dashboard",
-                collapse: '',
-                subMenu: null
+                link: "#",
+                collapse: "painel",
+                subMenu: [
+                    { title: "Início", link: "/painel" },
+                ]
             },
         ]
     },
@@ -27,7 +29,7 @@ const items = [
                 link: "#",
                 collapse: "Tarefas",
                 subMenu: [
-                    { title: "Tarefas", link: "#" },
+                    { title: "Tarefas", link: "/tarefas" },
                 ]
             },
             {
@@ -68,12 +70,12 @@ const items = [
             {
                 menuTitle: "Utilizador",
                 strIcon: "menu-icon mdi mdi-account-circle-outline",
-                link: "http://bootstrapdash.com/demo/star-admin2-free/docs/documentation.html",
+                link: "#",
                 collapse: "Utilizador",
                 subMenu: [
                     { title: "Perfil", link: "#" },
-                    { title: "Documentos", link: "@pages/ui-features/dropdowns.html" },
-                    { title: "Saldo", link: "@pages/ui-features/typography.html" },
+                    { title: "Documentos", link: "#" },
+                    { title: "Saldo", link: "#" },
                 ]
             },
         ]
@@ -90,7 +92,7 @@ const items = [
                         </span>
                 </li>
                 <li v-for="menu in item.menu" class="nav-item ">
-                    <a class="nav-link" :href="'#' + menu.collapse" data-bs-toggle="collapse" aria-expanded="false"
+                    <a class="nav-link" :href="menu.link + menu.collapse" data-bs-toggle="collapse" aria-expanded="false"
                         :aria-controls="menu.collapse">
                         <i :class="menu.strIcon"></i>
                         <span class="menu-title"><span class="nav-category-name">{{ menu.menuTitle }}</span></span>

@@ -12,10 +12,10 @@ let userLogged: any = userService.getLogged();
                 </button>
             </div>
             <div>
-                <a class="navbar-brand brand-logo text-white" href="@index.html">
+                <a class="navbar-brand brand-logo text-white" href="/painel">
                     TaskControl
                 </a>
-                <a class="navbar-brand brand-logo-mini text-white" href="@index.html">
+                <a class="navbar-brand brand-logo-mini text-white" href="/painel">
                     TaskControl
                 </a>
             </div>

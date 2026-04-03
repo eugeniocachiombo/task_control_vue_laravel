@@ -35,7 +35,7 @@ onMounted(async () => {
               <p class="statistics-title">Pendentes</p>
               <h3 class="rate-percentage">
                 {{ taskList.pending }}
-                <i v-if="!taskList.pending" class="spinner-border spinner-border-sm"></i>
+                <i v-if="!taskList.pending && taskList.pending!=0" class="spinner-border spinner-border-sm"></i>
               </h3>
               <p class="text-danger d-flex">
                 <!--<i class="mdi mdi-menu-down"></i><span>-0.5%</span>-->
@@ -54,7 +54,7 @@ onMounted(async () => {
               <p class="statistics-title">Aceitadas</p>
               <h3 class="rate-percentage ">
                 {{ taskList.accepted }}
-                <i v-if="!taskList.accepted" class="spinner-border spinner-border-sm"></i>
+                <i v-if="!taskList.accepted && taskList.accepted!=0" class="spinner-border spinner-border-sm"></i>
               </h3>
               <p class="text-danger d-flex">
                 <!--<i class="mdi mdi-menu-down"></i><span>-0.5%</span>-->
@@ -73,7 +73,7 @@ onMounted(async () => {
               <p class="statistics-title">Recusadas</p>
               <h3 class="rate-percentage">
                 {{ taskList.recused }}
-                <i v-if="!taskList.recused" class="spinner-border spinner-border-sm"></i>
+                <i v-if="!taskList.recused && taskList.recused!=0" class="spinner-border spinner-border-sm"></i>
               </h3>
               <p class="text-danger d-flex">
                 <!--<i class="mdi mdi-menu-down"></i><span>-0.5%</span>-->

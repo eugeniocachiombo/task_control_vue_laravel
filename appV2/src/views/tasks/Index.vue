@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
 import taskStore from "@/store/taskStore";
+import userService from '@/service/userService';
 
 //==============Titulação============///
 const titlePage = {
@@ -8,16 +9,20 @@ const titlePage = {
   path: 'tarefas > index'
 };
 
+//==============Sessão============///
+let userLogged: any = userService.getLogged();
+
 
 //==============Manipulação============///
 let taskList: any = ref({});
 
+
 onMounted(async () => {
   let allTasks = await taskStore.getTask();
   taskList.value = {
-    pending: await allTasks.filter((e) => e.status_aprov == "Pendente")?.length,
-    accepted: await allTasks.filter((e) => e.status_aprov == "Aprovado")?.length,
-    recused: await allTasks.filter((e) => e.status_aprov == "Recusado")?.length,
+    pending: await allTasks.filter((e) => e.status_aprov == "Pendente" && e.boss_id == userLogged.id)?.length,
+    accepted: await allTasks.filter((e) => e.status_aprov == "Aprovado" && e.boss_id == userLogged.id)?.length,
+    recused: await allTasks.filter((e) => e.status_aprov == "Recusado" && e.boss_id ==  userLogged.id)?.length,
   };
 });
 </script>
@@ -36,7 +41,7 @@ onMounted(async () => {
               <p class="statistics-title">Pendentes</p>
               <h3 class="rate-percentage">
                 {{ taskList.pending }}
-                <i v-if="!taskList.pending" class="spinner-border spinner-border-sm"></i>
+                <i v-if="!taskList.pending && taskList.pending!=0" class="spinner-border spinner-border-sm"></i>
               </h3>
               <p class="text-danger d-flex">
                 <!--<i class="mdi mdi-menu-down"></i><span>-0.5%</span>-->
@@ -55,7 +60,7 @@ onMounted(async () => {
               <p class="statistics-title">Aceitadas</p>
               <h3 class="rate-percentage ">
                 {{ taskList.accepted }}
-                <i v-if="!taskList.accepted" class="spinner-border spinner-border-sm"></i>
+                <i v-if="!taskList.accepted && taskList.accepted!=0" class="spinner-border spinner-border-sm"></i>
               </h3>
               <p class="text-danger d-flex">
                 <!--<i class="mdi mdi-menu-down"></i><span>-0.5%</span>-->
@@ -74,7 +79,7 @@ onMounted(async () => {
               <p class="statistics-title">Recusadas</p>
               <h3 class="rate-percentage">
                 {{ taskList.recused }}
-                <i v-if="!taskList.recused" class="spinner-border spinner-border-sm"></i>
+                <i v-if="!taskList.recused && taskList.recused!=0" class="spinner-border spinner-border-sm"></i>
               </h3>
               <p class="text-danger d-flex">
                 <!--<i class="mdi mdi-menu-down"></i><span>-0.5%</span>-->
@@ -86,25 +91,11 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-    </div>
+    <hr>
+    </div> 
 
     <div class="row">
-      <div class="col-lg-6 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Bar chart</h4>
-            <canvas id="barChart"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Doughnut chart</h4>
-            <canvas id="doughnutChart"></canvas>
-          </div>
-        </div>
-      </div>
+      <h1>Tabela</h1>
     </div>
   </div>
 </template>
