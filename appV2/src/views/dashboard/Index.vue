@@ -32,7 +32,7 @@ onMounted(async () => {
               </p>
             </div>
             <div class="col-6 text-center fs-1">
-              <i class="mdi mdi-alarm"></i>
+              <i class="mdi mdi-alarm text-warning"></i>
             </div>
           </div>
         </div>
@@ -41,8 +41,8 @@ onMounted(async () => {
         <div class="card">
           <div class="card-body d-flex justify-content-between align-items-center">
             <div class="col-6">
-              <p class="statistics-title">Aceitados</p>
-              <h3 class="rate-percentage">
+              <p class="statistics-title">Aceitadas</p>
+              <h3 class="rate-percentage ">
                 {{ taskList.accepted }}
                 <i v-if="!taskList.accepted" class="spinner-border spinner-border-sm"></i>
               </h3>
@@ -51,7 +51,7 @@ onMounted(async () => {
               </p>
             </div>
             <div class="col-6 text-center fs-1">
-              <i class="mdi mdi-checkbox-marked-circle-outline"></i>
+              <i class="mdi mdi-checkbox-marked-circle-outline text-success"></i>
             </div>
           </div>
         </div>
@@ -60,7 +60,7 @@ onMounted(async () => {
         <div class="card">
           <div class="card-body d-flex justify-content-between align-items-center">
             <div class="col-6">
-              <p class="statistics-title">Recusados</p>
+              <p class="statistics-title">Recusadas</p>
               <h3 class="rate-percentage">
                 {{ taskList.recused }}
                 <i v-if="!taskList.recused" class="spinner-border spinner-border-sm"></i>
@@ -70,7 +70,7 @@ onMounted(async () => {
               </p>
             </div>
             <div class="col-6 text-center fs-1">
-              <i class="mdi mdi-close-circle-outline"></i>
+              <i class="mdi mdi-close-circle-outline text-danger"></i>
             </div>
           </div>
         </div>
