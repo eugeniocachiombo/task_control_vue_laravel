@@ -13,18 +13,12 @@ class TaskController extends Controller
 
     public function index()
     {
-        $items = request('items', 10);
-        $data = Task::paginate($items);
-        return TaskResource::collection($data);
+        return Task::all();
     }
 
     public function store(StoreTaskRequest $request)
     {
-        $data = Task::create($request->validated());
-        if (!$data) {
-            return response()->json($data, 404);
-        }
-        return response()->json($data, 201);
+        return Task::create($request->validated());
     }
 
     public function show(string $id)
