@@ -8,7 +8,7 @@ const taskStore = {
        return await repo.list();
     },
     async createTask(data:any){
-       // await repo.list();
+        await repo.create(data);
     },
     async updateTask(id:number, data:any){
        // await repo.list();

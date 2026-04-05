@@ -21,6 +21,4 @@ const router = createRouter({
   routes
 });
 
-history.replaceState(history.state, '', import.meta.env.BASE_URL);
-
 export default router 

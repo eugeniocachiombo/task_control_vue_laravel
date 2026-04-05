@@ -137,7 +137,6 @@
       header="Formulário de Tarefa"
       modal
       style="width: 500px"
-      :closable="false"
     >
       <div class="container-fluid">
         <div class="row">
@@ -163,20 +162,14 @@
 
       <!-- FOOTER -->
       <template #footer>
-        <Button
-          label="Cancelar"
-          severity="secondary"
-          outlined
-          @click="() => (formDialog = !formDialog)"
-        />
-        <Button label="Salvar" icon="mdi mdi-check" :loading="loader" @click="store" />
+        <Button label="Salvar" icon="mdi mdi-check" @click="save" />
       </template>
     </Dialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 import taskStore from "@/store/taskStore";
 import userService from "@/service/userService";
 
@@ -206,12 +199,12 @@ let userLogged: any = userService.getLogged();
 
 //==============FORMULÁRIO========//
 let formDialog: any = ref(false);
-let taskForm: any = {
+let taskForm = ref({
   id: null,
   title: "",
   desc: "",
-};
-const loader: any = ref(false);
+});
+let loader = ref(false);
 
 //==============Manipulação============///
 let taskList: any = ref({});
@@ -224,21 +217,23 @@ function openDialog() {
   formDialog.value = true;
 }
 
-async function store() {
+async function save() {
   loader.value = true;
+
   try {
     if (taskForm?.value?.id) {
       taskStore.updateTask(taskForm.value.id, taskForm.value);
       toast.add({
-        severity: "Success",
+        severity: "success",
         summary: "Sucesso",
         detail: "Operação realizada com sucesso",
         life: 3000,
       });
     } else {
+      console.log(taskForm.value);
       taskStore.createTask(taskForm.value);
       toast.add({
-        severity: "Success",
+        severity: "success",
         summary: "Sucesso",
         detail: "Operação realizada com sucesso",
         life: 3000,
