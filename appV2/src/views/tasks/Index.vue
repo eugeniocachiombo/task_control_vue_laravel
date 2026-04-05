@@ -134,7 +134,6 @@
     <!--FORMULÁRIO-->
     <Dialog
       v-model:visible="formDialog"
-      :value="taskForm"
       header="Formulário de Tarefa"
       modal
       style="width: 500px"
@@ -170,7 +169,7 @@
           outlined
           @click="() => (formDialog = !formDialog)"
         />
-        <Button label="Salvar" icon="mdi mdi-check" :loading="loader" @click="save" />
+        <Button label="Salvar" icon="mdi mdi-check" :loading="loader" @click="store" />
       </template>
     </Dialog>
   </div>
@@ -182,7 +181,6 @@ import taskStore from "@/store/taskStore";
 import userService from "@/service/userService";
 
 // PrimeVue
-import Toast from "primevue/toast";
 import Dialog from "primevue/dialog";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
@@ -195,7 +193,6 @@ import Column from "primevue/column";
 
 // Toast service
 import { useToast } from "primevue/usetoast";
-
 const toast = useToast();
 
 //==============Titulação============///
@@ -210,6 +207,7 @@ let userLogged: any = userService.getLogged();
 //==============FORMULÁRIO========//
 let formDialog: any = ref(false);
 let taskForm: any = {
+  id: null,
   title: "",
   desc: "",
 };
@@ -226,8 +224,39 @@ function openDialog() {
   formDialog.value = true;
 }
 
-function save() {
-  formDialog.value = false;
+async function store() {
+  loader.value = true;
+  try {
+    if (taskForm?.value?.id) {
+      taskStore.updateTask(taskForm.value.id, taskForm.value);
+      toast.add({
+        severity: "Success",
+        summary: "Sucesso",
+        detail: "Operação realizada com sucesso",
+        life: 3000,
+      });
+    } else {
+      taskStore.createTask(taskForm.value);
+      toast.add({
+        severity: "Success",
+        summary: "Sucesso",
+        detail: "Operação realizada com sucesso",
+        life: 3000,
+      });
+    }
+
+    //formDialog.value = false;
+  } catch (error) {
+    toast.add({
+      severity: "error",
+      summary: "Falha ao salvar",
+      detail: "Ocorreu algum erro na operação",
+      life: 3000,
+    });
+    console.log(error);
+  } finally {
+    loader.value = false;
+  }
 }
 
 function confirmDeleteSelected() {}
