@@ -147,6 +147,9 @@
               class="w-100"
               placeholder="Digite o Título"
             />
+            <p class="text-danger" v-if="taskForm?.validations?.title">
+              {{ taskForm?.validations?.title?.join("") }}
+            </p>
           </div>
 
           <div class="col-md-12 mb-3">
@@ -162,14 +165,14 @@
 
       <!-- FOOTER -->
       <template #footer>
-        <Button label="Salvar" icon="mdi mdi-check" @click="save" />
+        <Button label="Salvar" icon="mdi mdi-check" :loading="loader" @click="save" />
       </template>
     </Dialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref } from "vue";
+import { computed, onMounted, onUpdated, reactive, ref } from "vue";
 import taskStore from "@/store/taskStore";
 import userService from "@/service/userService";
 
@@ -203,6 +206,7 @@ let taskForm = ref({
   id: null,
   title: "",
   desc: "",
+  validations: {},
 });
 let loader = ref(false);
 
@@ -214,6 +218,14 @@ const filters = ref({
 });
 
 function openDialog() {
+  taskForm = ref({
+    id: null,
+    title: "",
+    desc: "",
+    func_id: userLogged.id,
+    //boss_id: userLogged.id,
+    validations: {},
+  });
   formDialog.value = true;
 }
 
@@ -222,25 +234,18 @@ async function save() {
 
   try {
     if (taskForm?.value?.id) {
-      taskStore.updateTask(taskForm.value.id, taskForm.value);
-      toast.add({
-        severity: "success",
-        summary: "Sucesso",
-        detail: "Operação realizada com sucesso",
-        life: 3000,
-      });
+      await taskStore.updateTask(taskForm.value.id, taskForm.value);
     } else {
-      console.log(taskForm.value);
-      taskStore.createTask(taskForm.value);
-      toast.add({
-        severity: "success",
-        summary: "Sucesso",
-        detail: "Operação realizada com sucesso",
-        life: 3000,
-      });
+      await taskStore.createTask(taskForm.value);
     }
 
-    //formDialog.value = false;
+    toast.add({
+      severity: "success",
+      summary: "Sucesso",
+      detail: "Operação realizada com sucesso",
+      life: 3000,
+    });
+    formDialog.value = false;
   } catch (error) {
     toast.add({
       severity: "error",
@@ -248,7 +253,7 @@ async function save() {
       detail: "Ocorreu algum erro na operação",
       life: 3000,
     });
-    console.log(error);
+    taskForm.value.validations = error?.response?.data?.errors;
   } finally {
     loader.value = false;
   }
@@ -256,7 +261,7 @@ async function save() {
 
 function confirmDeleteSelected() {}
 
-onMounted(async () => {
+async function refreshData() {
   let allTasks = await taskStore.getTask();
   taskList.value = {
     all: await allTasks,
@@ -264,6 +269,13 @@ onMounted(async () => {
     accepted: await allTasks.filter((e: any) => e.status_aprov == "Aprovado")?.length,
     recused: await allTasks.filter((e: any) => e.status_aprov == "Recusado")?.length,
   };
+}
+
+onUpdated(async () => {
+  refreshData();
+});
+onMounted(async () => {
+  refreshData();
 });
 </script>
 

@@ -1,8 +1,12 @@
+import UserRepository  from '@/repository/userRepository';
+
 let userService = {
-    setLogged(data:any){
-        sessionStorage.setItem('id', data?.id);
-        sessionStorage.setItem('name',data?.name);
-        sessionStorage.setItem('email', data?.email);
+    async setLogged(){
+        let repo = new UserRepository();
+        let user = await repo.logged();
+        sessionStorage.setItem('id', user?.id);
+        sessionStorage.setItem('name',user?.name);
+        sessionStorage.setItem('email', user?.email);
     },
     getLogged(){
         return {

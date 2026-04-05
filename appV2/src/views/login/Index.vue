@@ -21,7 +21,7 @@ async function auth() {
     console.log(response);
 
     if (response?.data) {
-      userService.setLogged(response?.data);
+      await userService.setLogged();
       router.push({ name: "dashboard" });
     }
   } catch (error: any) {

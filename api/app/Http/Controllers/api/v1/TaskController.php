@@ -13,7 +13,7 @@ class TaskController extends Controller
 
     public function index()
     {
-        return Task::with(['boss', 'func'])->get();
+        return Task::with(['boss', 'func'])->orderBy('id', 'desc')->get();
     }
 
     public function store(StoreTaskRequest $request)
