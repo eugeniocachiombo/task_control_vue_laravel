@@ -34,7 +34,7 @@ const items = [
             },
             {
                 menuTitle: "Classificação",
-                strIcon: "menu-icon mdi mdi-car",
+                strIcon: "menu-icon mdi mdi-floor-plan",
                 link: "#",
                 collapse: "pontuacao",
                 subMenu: [
