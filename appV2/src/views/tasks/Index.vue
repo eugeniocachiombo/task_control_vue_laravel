@@ -128,6 +128,18 @@
         <Column field="status_aprov" header="Estado de Aprovação" sortable />
         <Column field="func.name" header="Responsável" sortable />
         <Column field="boss.name" header="Chefe" sortable />
+        <Column header="Acção">
+          <template #body="slotProps">
+            <Button
+              class="mx-1"
+              outlined
+              rounded
+              icon=" mdi mdi-repeat "
+              severity="blue"
+              @click="openChangeStatus(slotProps?.data)"
+            />
+          </template>
+        </Column>
       </DataTable>
     </div>
 
@@ -168,6 +180,38 @@
         <Button label="Salvar" icon="mdi mdi-check" :loading="loader" @click="save" />
       </template>
     </Dialog>
+
+    <Dialog
+      v-model:visible="statusAprovDialog"
+      header="Mudar estado da Tarefa"
+      modal
+      style="width: 500px"
+    >
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label for="taskForm.status_aprov" class="fw-bold mb-1">Título</label>
+            <Select
+              filter
+              :options="statusAprovList"
+              optionLabel="label"
+              optionValue="value"
+              v-model="taskForm.status_aprov"
+              class="w-100"
+              placeholder="Selecione o estado"
+            />
+            <p class="text-danger" v-if="taskForm?.validations?.status_aprov">
+              {{ taskForm?.validations?.status_aprov?.join("") }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <template #footer>
+        <Button label="Salvar" icon="mdi mdi-check" :loading="loader" @click="save" />
+      </template>
+    </Dialog>
   </div>
 </template>
 
@@ -185,6 +229,7 @@ import { FilterMatchMode } from "@primevue/core/api";
 import Dropdown from "primevue/dropdown";
 import DataTable from "primevue/datatable";
 import IconField from "primevue/iconfield";
+import Select from "primevue/select";
 import Column from "primevue/column";
 
 // Toast service
@@ -202,13 +247,21 @@ let userLogged: any = userService.getLogged();
 
 //==============FORMULÁRIO========//
 let formDialog: any = ref(false);
-let taskForm = ref({
+let statusAprovDialog: any = ref(false);
+let taskForm = ref<any>({
   id: null,
   title: "",
   desc: "",
+  func_id: userLogged.id,
+  boss_id: null,
+  status_aprov: null,
   validations: {},
 });
 let loader = ref(false);
+let statusAprovList = [
+  { label: "Aprovado", value: "aprovado" },
+  { label: "Recusado", value: "recusado" },
+];
 
 //==============Manipulação============///
 let taskList: any = ref({});
@@ -218,15 +271,29 @@ const filters = ref({
 });
 
 function openDialog() {
-  taskForm = ref({
+  taskForm.value = {
     id: null,
     title: "",
     desc: "",
     func_id: userLogged.id,
-    //boss_id: userLogged.id,
+    boss_id: null,
+    status_aprov: null,
     validations: {},
-  });
+  };
   formDialog.value = true;
+}
+
+function openChangeStatus(data) {
+  taskForm.value = {
+    id: data?.id,
+    title: data?.title,
+    desc: data?.desc,
+    func_id: data?.func_id,
+    boss_id: userLogged.id,
+    status_aprov: null,
+    validations: {},
+  };
+  statusAprovDialog.value = true;
 }
 
 async function save() {
@@ -246,6 +313,7 @@ async function save() {
       life: 3000,
     });
     formDialog.value = false;
+    statusAprovDialog.value = false;
   } catch (error) {
     toast.add({
       severity: "error",
