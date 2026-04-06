@@ -11,10 +11,10 @@ const taskStore = {
         await repo.create(data);
     },
     async updateTask(id:number, data:any){
-       // await repo.list();
+      await repo.update(id,data);
     },
     async deleteTask(id:number){
-       // await repo.list();
+      await repo.delete(id);
     },
 }
 

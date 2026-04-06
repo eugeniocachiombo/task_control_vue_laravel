@@ -33,11 +33,8 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, string $id)
     {
         $data = Task::find($id);
-        if (!$data) {
-            return response()->json($data, 404);
-        }
         $data->update($request->validated());
-        return response()->json($data, 200);
+        return $data;
     }
 
     public function destroy(string $id)

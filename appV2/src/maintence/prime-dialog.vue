@@ -31,6 +31,16 @@
             placeholder="Selecione"
           />
         </div>
+        <div class="col-md-12 mb-3">
+          <label>Categoria</label>
+          <Select
+              filter
+              :options="statusAprovList" optionLabel="label" optionValue="value"
+              v-model="taskForm.status_aprov"
+              class="w-100"
+              placeholder="Digite o Título"
+            />
+        </div>
       </div>
     </div>
 

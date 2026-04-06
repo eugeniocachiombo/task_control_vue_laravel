@@ -22,7 +22,7 @@ class UpdateTaskRequest extends FormRequest
             'desc' => 'sometimes|nullable|string',
 
             'status_exec' => 'sometimes|nullable|in:Pendente,Execução,Finalizado',
-            'status_aprov' => 'sometimes|nullable|in:Pendente,Aprovado,Recusado',
+            'status_aprov' => 'required',
 
             'boss_id' => 'sometimes|nullable|exists:users,id',
             'func_id' => 'sometimes|required|exists:users,id',
@@ -38,8 +38,8 @@ class UpdateTaskRequest extends FormRequest
 
             'desc.string' => 'A descrição deve ser um texto.',
 
-            'status_exec.in' => 'O status de execução deve ser: Pendente, Execução ou Finalizado.',
-            'status_aprov.in' => 'O status de aprovação deve ser: Pendente, Aprovado ou Recusado.',
+            'status_exec.in' => 'O estado de execução deve ser: Pendente, Execução ou Finalizado.',
+            'status_aprov.required' => 'O estado de aprovação é obrigatório',
 
             'boss_id.exists' => 'O boss selecionado não existe.',
 
