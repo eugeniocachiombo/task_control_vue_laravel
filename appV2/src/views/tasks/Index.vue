@@ -113,7 +113,7 @@
                   severity="danger"
                   outlined
                   @click="confirmDeleteSelected"
-                  :disabled="!selectedTasks.length || {}"
+                  :disabled="!selectedTasks?.length"
                 />
               </span>
             </div>
