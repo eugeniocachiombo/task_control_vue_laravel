@@ -15,6 +15,13 @@ let validations: any = ref({});
 let spinner: any = ref(false);
 let router = useRouter();
 
+toast.add({
+  severity: "error",
+  summary: "Erro!...",
+  detail: "Falha de operação",
+  life: 4000,
+});
+
 async function auth() {
   spinner.value = true;
   validations.value = {};
