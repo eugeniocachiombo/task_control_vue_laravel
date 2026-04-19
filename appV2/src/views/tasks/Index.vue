@@ -113,7 +113,7 @@
                   severity="danger"
                   outlined
                   @click="confirmDeleteSelected"
-                  :disabled="!selectedTasks.length"
+                  :disabled="!selectedTasks.length || {}"
                 />
               </span>
             </div>
@@ -283,7 +283,7 @@ function openDialog() {
   formDialog.value = true;
 }
 
-function openChangeStatus(data) {
+function openChangeStatus(data: any) {
   taskForm.value = {
     id: data?.id,
     title: data?.title,
@@ -314,7 +314,7 @@ async function save() {
     });
     formDialog.value = false;
     statusAprovDialog.value = false;
-  } catch (error) {
+  } catch (error: any) {
     toast.add({
       severity: "error",
       summary: "Falha ao salvar",
