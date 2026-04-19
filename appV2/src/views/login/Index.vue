@@ -5,6 +5,10 @@ import { ref } from "vue";
 import sweetalert from "@/plugin/sweetalert";
 import userService from "@/service/userService";
 
+// Toast service
+import { useToast } from "primevue/usetoast";
+const toast = useToast();
+
 let email: string = "";
 let password: string = "";
 let validations: any = ref({});
@@ -29,20 +33,20 @@ async function auth() {
     let notFound = error?.response?.data?.length;
 
     if (notFound == 0) {
-      sweetalert({
-        icon: "error",
-        title: "Dados Inválidos",
-        html: "Verifique o seu email e a senha",
-        btn: true,
+      toast.add({
+        severity: "error",
+        summary: "Dados Inválidos",
+        detail: "Verifique o seu email e a senha",
+        life: 4000,
       });
     }
 
     if (!validations.value) {
-      sweetalert({
-        icon: "error",
-        title: "Erro!...",
-        html: "Falha de operação",
-        btn: true,
+      toast.add({
+        severity: "error",
+        summary: "Erro!...",
+        detail: "Falha de operação",
+        life: 4000,
       });
     }
   } finally {
