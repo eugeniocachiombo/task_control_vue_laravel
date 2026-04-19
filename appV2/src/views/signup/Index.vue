@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import axios from "@/plugin/axios";
+import axios from "@/plugin/axios.ts";
 import { ref } from "vue";
 import sweetalert from "@/plugin/sweetalert";
 
